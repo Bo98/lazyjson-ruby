@@ -1,0 +1,4 @@
+/.vscode/
+/lib/lazyjson.*
+!/lib/lazyjson.rb
+/tmp/

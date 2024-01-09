@@ -1,0 +1,24 @@
+PATH
+  remote: .
+  specs:
+    lazyjson (0.1.0)
+      rice (~> 4.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.1.0)
+    rake-compiler (1.2.5)
+      rake
+    rice (4.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  lazyjson!
+  rake
+  rake-compiler
+
+BUNDLED WITH
+   2.4.10
