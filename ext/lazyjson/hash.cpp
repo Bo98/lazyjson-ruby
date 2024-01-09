@@ -65,10 +65,11 @@ LazyJSON::Hash::Hash(std::shared_ptr<simdjson::dom::document> document, simdjson
 {
 }
 
-Object LazyJSON::Hash::operator[](String key)
+Object LazyJSON::Hash::operator[](String key) const
 {
+  auto key_view = std::string_view(key.c_str(), key.length());
   simdjson::dom::element element;
-  auto error = m_object.at_key(key.c_str()).get(element);
+  auto error = m_object.at_key(key_view).get(element);
   if (error == simdjson::error_code::NO_SUCH_FIELD)
     return Nil;
   else if (error)
@@ -84,4 +85,16 @@ LazyJSON::Hash::Iterator LazyJSON::Hash::begin() const noexcept
 LazyJSON::Hash::Iterator LazyJSON::Hash::end() const noexcept
 {
   return Iterator(m_document, m_object.end());
+}
+
+bool LazyJSON::Hash::has_key(String key) const noexcept
+{
+  auto key_view = std::string_view(key.c_str(), key.length());
+  auto end = m_object.end();
+  for (auto it = m_object.begin(); it != end; ++it) {
+    if (it.key_equals(key_view)) {
+      return true;
+    }
+  }
+  return false;
 }

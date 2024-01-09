@@ -49,5 +49,6 @@ extern "C" void Init_lazyjson() noexcept
 
   Data_Type<LazyJSON::Hash> rb_cHash = define_class_under<LazyJSON::Hash>(rb_mLazyJSON, "Hash")
     .define_iterator(&LazyJSON::Hash::begin, &LazyJSON::Hash::end)
-    .define_method("[]", &LazyJSON::Hash::operator[]);
+    .define_method("[]", &LazyJSON::Hash::operator[])
+    .define_method("key?", &LazyJSON::Hash::has_key);
 }

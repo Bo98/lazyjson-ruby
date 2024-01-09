@@ -40,10 +40,12 @@ namespace LazyJSON
     };
 
     Hash(std::shared_ptr<simdjson::dom::document> document, simdjson::dom::object &&object);
-    Rice::Object operator[](Rice::String key);
+    Rice::Object operator[](Rice::String key) const;
 
     Iterator begin() const noexcept;
     Iterator end() const noexcept;
+
+    bool has_key(Rice::String key) const noexcept;
 
   private:
     std::shared_ptr<simdjson::dom::document> m_document;
